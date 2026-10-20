@@ -4,7 +4,7 @@ import re # expressoes regulares, procura padroes no texto
 def atraso():
     # executa o comando ping do linux para pegar 10 valores
     res = subprocess.run(
-    ["ping", "-c", "10", "192.168.20.1"], 
+    ["ping", "-c", "10", "ip"], 
     capture_output=True,
     text=True
     )
