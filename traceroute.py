@@ -5,7 +5,7 @@ def traceroute():
     quant = 0
 
     res = subprocess.run(
-        ["traceroute", "192.168.20.1"],
+        ["traceroute", "ip"],
         capture_output=True,
         text=True
     )
