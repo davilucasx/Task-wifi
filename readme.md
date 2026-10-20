@@ -1,45 +1,43 @@
 # 🌐 Monitoramento de Rede com Python
 
 <p align="center">
-  Um projeto de monitoramento de rede em Linux utilizando Python para coletar métricas de latência, rota e tráfego de dados.
+  Script em Python para coleta periódica de métricas de rede em sistemas Linux.
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/OS-Linux-orange?logo=linux&logoColor=white" alt="Linux">
-  <img src="https://img.shields.io/badge/Data-JSONL-green" alt="JSONL">
-  <img src="https://img.shields.io/badge/Status-Em%20desenvolvimento-yellow" alt="Em desenvolvimento">
+  <img src="https://img.shields.io/badge/Platform-Linux-orange?logo=linux&logoColor=white" alt="Linux">
+  <img src="https://img.shields.io/badge/Storage-JSONL-green" alt="JSONL">
+  <img src="https://img.shields.io/badge/Status-%20Concluído-green" alt="Status">
 </p>
 
 ---
 
 ## 📌 Sobre o projeto
 
-Este projeto tem como objetivo monitorar aspectos básicos de uma conexão de rede por meio de um script desenvolvido em Python.
+Este projeto consiste em um script de monitoramento de rede desenvolvido em Python, utilizando ferramentas do Linux para coletar informações sobre latência, rota e tráfego de dados.
 
-A aplicação executa comandos do Linux, consulta estatísticas da interface de rede e registra os resultados em um arquivo JSONL, permitindo armazenar os dados para análises posteriores.
+As informações são organizadas e armazenadas localmente em um arquivo JSONL, permitindo consultar os registros posteriormente e utilizá-los em análises.
 
-O projeto também serve como prática de programação em Python, utilização do terminal Linux e controle de versão com Git.
+O projeto foi desenvolvido com o objetivo de praticar Python, comandos Linux, manipulação de arquivos e controle de versão com Git.
 
 ## ⚙️ Funcionalidades
 
-| Funcionalidade | Descrição |
-|:--|:--|
-| 📡 Latência | Mede a latência média utilizando `ping`. |
-| 🛣️ Traceroute | Contabiliza os saltos encontrados pelo comando `traceroute`. |
-| 📥 Tráfego recebido | Mede a variação dos bytes recebidos pela interface. |
-| 📤 Tráfego transmitido | Mede a variação dos bytes transmitidos pela interface. |
-| 🕒 Registro temporal | Registra a data e a hora de cada coleta. |
-| 💾 Armazenamento | Salva os resultados em formato JSONL. |
-| 🔢 Identificação | Atribui um ID sequencial para cada registro. |
+- 📡 **Monitoramento de latência:** utiliza `ping` para obter a latência média até o gateway configurado.
+- 🛣️ **Contagem de saltos:** utiliza `traceroute` para contabilizar os saltos encontrados até o destino.
+- 📥 **Tráfego recebido:** calcula a diferença entre duas leituras dos bytes recebidos pela interface de rede.
+- 📤 **Tráfego transmitido:** calcula a diferença entre duas leituras dos bytes transmitidos.
+- 🕒 **Registro temporal:** registra a data e a hora de cada coleta.
+- 🔢 **Identificação das coletas:** atribui um ID sequencial aos registros.
+- 💾 **Armazenamento local:** salva os resultados em um arquivo JSONL.
 
 ## 🧰 Tecnologias utilizadas
 
-- **Python 3** — lógica de coleta, processamento e armazenamento dos dados.
-- **Linux** — sistema operacional e fonte das estatísticas de rede.
+- **Python 3** — implementação da lógica de coleta e armazenamento.
+- **Linux** — acesso às ferramentas e estatísticas de rede do sistema.
 - **Git e GitHub** — controle de versão e hospedagem do código.
-- **JSON Lines (JSONL)** — armazenamento dos registros.
-- **ping e traceroute** — ferramentas para diagnóstico de rede.
+- **JSON Lines (JSONL)** — formato de armazenamento dos dados.
+- **ping e traceroute** — ferramentas de diagnóstico de rede.
 
 ## 📂 Estrutura do projeto
 
@@ -51,106 +49,113 @@ monitoramento-rede/
 ├── vazao.py
 ├── salvarJson.py
 ├── dados.jsonl
+├── .gitignore
 └── README.md
 ```
 
-> A estrutura acima representa a organização esperada com base nos módulos enviados. Ajuste os nomes caso estejam diferentes no seu repositório.
+## 📋 Pré-requisitos
 
-## 🚀 Como executar
+Antes de executar o projeto, verifique se você possui:
 
-### 1. Pré-requisitos
+- Linux instalado.
+- Python 3.
+- Git.
+- As ferramentas `ping` e `traceroute`.
+- Uma interface de rede ativa.
 
-- Linux com Python 3 instalado.
-- Ferramentas `ping` e `traceroute`.
-- Interface de rede ativa e configurada.
-
-Em sistemas Ubuntu ou Debian, instale as ferramentas necessárias:
+Em distribuições baseadas em Ubuntu ou Debian, instale as ferramentas de rede com:
 
 ```bash
 sudo apt update
 sudo apt install iputils-ping traceroute
 ```
 
-### 2. Clone o repositório
+## 🚀 Instalação e execução
+
+### 1. Clone o repositório
+
+Substitua `URL_DO_REPOSITORIO` pelo endereço real do repositório no GitHub.
 
 ```bash
 git clone URL_DO_REPOSITORIO
-```
-
-Acesse a pasta do projeto:
-
-```bash
 cd NOME_DO_PROJETO
 ```
 
-### 3. Execute o programa
+### 2. Crie o ambiente virtual
+
+```bash
+python3 -m venv .venv
+```
+
+Ative o ambiente virtual:
+
+```bash
+source .venv/bin/activate
+```
+
+### 3. Crie o arquivo de dados
+
+O arquivo `dados.jsonl` é utilizado para armazenar os registros das coletas e não precisa ser enviado ao GitHub.
+
+Como o programa tenta abrir esse arquivo durante a inicialização, crie-o manualmente antes de executar o script:
+
+```bash
+touch dados.jsonl
+```
+
+O arquivo pode permanecer vazio. Durante a execução, os novos registros serão acrescentados a ele.
+
+### 4. Execute o programa
 
 ```bash
 python3 main.py
 ```
 
-O programa iniciará as coletas automaticamente e exibirá os resultados no terminal. Para interromper a execução, pressione `Ctrl + C`.
+O script iniciará as coletas e exibirá os resultados no terminal. Para interromper a execução, pressione `Ctrl + C`.
 
-> **Importante:** o código atual espera encontrar o arquivo `dados.jsonl` ao iniciar. Caso ele ainda não exista, crie um arquivo vazio com `touch dados.jsonl` antes de executar o programa.
 
 ## 📊 Dados coletados
 
-Cada coleta é armazenada como um objeto JSON independente, contendo informações como:
+Cada registro contém os seguintes campos:
 
-| Campo | Significado |
-|:--|:--|
-| `ID` | Identificador sequencial do registro. |
-| `Interface` | Interface monitorada, atualmente `wlp3s0`. |
+| Campo | Descrição |
+|---|---|
+| `ID` | Identificador sequencial da coleta. |
+| `Interface` | Interface de rede monitorada. |
 | `Timestamp` | Data e hora da coleta. |
-| `Latencia` | Latência média em milissegundos. |
-| `Traceroute` | Quantidade de saltos contabilizados. |
+| `Latencia` | Latência média obtida pelo `ping`, em milissegundos. |
+| `Traceroute` | Quantidade de saltos contabilizados pelo programa. |
 | `Dados_recebidos` | Diferença de bytes recebidos durante a medição. |
 | `Dados_transmitidos` | Diferença de bytes transmitidos durante a medição. |
 
-### Exemplo de registro JSONL
+### Exemplo de registro
 
 ```json
-{
-  "ID": 1,
-  "Interface": "wlp3s0",
-  "Timestamp": "2026-10-20T10:30:00",
-  "Latencia": 1.25,
-  "Traceroute": 1,
-  "Dados_recebidos": 2048,
-  "Dados_transmitidos": 1024
-}
+{"ID":1,"Interface":"wlp3s0","Timestamp":"2026-10-20T10:30:00","Latencia":1.25,"Traceroute":1,"Dados_recebidos":2048,"Dados_transmitidos":1024}
 ```
 
-*Os valores são ilustrativos. Cada registro real é salvo em uma única linha do arquivo.*
+*Os valores são fictícios e servem apenas para demonstrar a estrutura de um registro.*
 
-## 🔄 Funcionamento
+## 🔄 Como funciona
 
-1. O programa inicia a coleta de informações.
-2. Executa o `ping` para obter a latência média até o destino configurado.
-3. Executa o `traceroute` e contabiliza os saltos encontrados.
-4. Consulta os contadores de tráfego da interface de rede.
-5. Organiza os resultados em um objeto Python.
-6. Salva os dados no arquivo `dados.jsonl`.
-7. Aguarda aproximadamente 30 segundos antes de iniciar a próxima coleta, além do tempo gasto nas operações.
+1. O programa verifica os registros anteriores para determinar o próximo ID.
+2. Executa o `ping` para coletar a latência média.
+3. Executa o `traceroute` para contabilizar os saltos encontrados.
+4. Consulta as estatísticas de tráfego da interface de rede.
+5. Organiza as informações em um objeto Python.
+6. Registra os dados no arquivo `dados.jsonl`.
+7. Aguarda 30 segundos antes de iniciar o próximo ciclo, além do tempo gasto nas operações.
 
 ## 🎯 Objetivos de aprendizagem
 
 - Praticar funções, módulos e manipulação de arquivos em Python.
-- Executar comandos do sistema operacional utilizando `subprocess`.
-- Consultar estatísticas de rede disponíveis no Linux.
+- Executar comandos do sistema operacional com `subprocess`.
+- Consultar estatísticas de interfaces de rede no Linux.
 - Trabalhar com dados estruturados em JSON.
-- Utilizar Git para versionar o desenvolvimento do projeto.
-
-## 🔮 Melhorias futuras
-
-- [ ] Permitir configurar o endereço IP de destino.
-- [ ] Permitir selecionar a interface de rede.
-- [ ] Melhorar o tratamento de falhas e erros.
-- [ ] Gerar gráficos de latência e tráfego.
-- [ ] Criar relatórios a partir dos dados coletados.
+- Utilizar Git e GitHub para versionar um projeto.
 
 ---
 
 <p align="center">
-  Desenvolvido como projeto de estudo de Python, Linux e redes de computadores.
+  Desenvolvido como projeto de estudo de Python, Linux e git.
 </p>
