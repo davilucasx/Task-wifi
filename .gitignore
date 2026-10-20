@@ -1,0 +1,9 @@
+# Ambiente virtual Python
+.venv/
+
+# Cache do Python
+__pycache__/
+*.py[cod]
+
+# Dados coletados pelo monitoramento
+dados.jsonl
